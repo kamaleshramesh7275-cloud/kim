@@ -10,7 +10,7 @@ const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export default function InjuryCalendar() {
   const { user, athletes } = useAppStore();
   const athlete = athletes.find(a => a.id === user?.id) || athletes[0];
-  const injuries = athlete.injuryHistory || [];
+  const injuries = athlete.pastInjuries || [];
 
   const now = new Date();
   const year = now.getFullYear();

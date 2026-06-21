@@ -15,7 +15,7 @@ const MILESTONES = [
 ];
 
 export default function RecoveryStreaks() {
-  const { user, athletes, updateBiometrics } = useAppStore();
+  const { user, athletes, updateAthleteBiometrics } = useAppStore();
   const athlete = athletes.find(a => a.id === user?.id) || athletes[0];
   const [submitted, setSubmitted] = useState(false);
 
@@ -30,7 +30,7 @@ export default function RecoveryStreaks() {
   });
 
   const onSubmit = (data: any) => {
-    updateBiometrics(athlete.id, {
+    updateAthleteBiometrics(athlete.id, {
       sleep: Number(data.sleep),
       hydration: Number(data.hydration),
       soreness: Number(data.soreness),
