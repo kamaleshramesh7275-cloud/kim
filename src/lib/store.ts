@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { User, Athlete, Alert, TeamOverview } from "./types";
+import { User, Athlete, Alert, TeamOverview, CurrentInjury } from "./types";
 import { MOCK_ATHLETES, MOCK_ALERTS, MOCK_TEAM_OVERVIEW } from "./mock";
 
 interface AppState {
@@ -12,6 +12,7 @@ interface AppState {
   login: (user: User) => void;
   logout: () => void;
   updateAthleteBiometrics: (id: string, biometrics: Partial<Athlete["biometrics"]>) => void;
+  updateAthleteInjury: (id: string, injury: CurrentInjury | undefined) => void;
   resolveAlert: (id: string) => void;
 }
 
@@ -40,6 +41,19 @@ export const useAppStore = create<AppState>((set) => ({
     set((state) => ({
       alerts: state.alerts.map((alert) =>
         alert.id === id ? { ...alert, isResolved: true } : alert
+      ),
+    })),
+
+  updateAthleteInjury: (id, injury) =>
+    set((state) => ({
+      athletes: state.athletes.map((athlete) =>
+        athlete.id === id
+          ? {
+              ...athlete,
+              currentInjury: injury,
+              injuryStatus: injury ? (injury.severity === "high" ? "Injured" : "Caution") : "Healthy"
+            }
+          : athlete
       ),
     })),
 }));
