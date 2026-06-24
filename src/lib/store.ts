@@ -7,10 +7,13 @@ interface AppState {
   athletes: Athlete[];
   alerts: Alert[];
   teamOverview: TeamOverview;
+  coachPermanentCode?: string;
+  codeGeneratedAt?: string;
 
   // Actions
   login: (user: User) => void;
   logout: () => void;
+  setCoachPermanentCode: (code: string) => void;
   updateAthleteBiometrics: (id: string, biometrics: Partial<Athlete["biometrics"]>) => void;
   updateAthleteInjury: (id: string, injury: CurrentInjury | undefined) => void;
   resolveAlert: (id: string) => void;
@@ -21,9 +24,12 @@ export const useAppStore = create<AppState>((set) => ({
   athletes: MOCK_ATHLETES,
   alerts: MOCK_ALERTS,
   teamOverview: MOCK_TEAM_OVERVIEW,
+  coachPermanentCode: undefined,
+  codeGeneratedAt: undefined,
 
   login: (user) => set({ user }),
   logout: () => set({ user: null }),
+  setCoachPermanentCode: (code) => set({ coachPermanentCode: code, codeGeneratedAt: new Date().toISOString() }),
   
   updateAthleteBiometrics: (id, newBiometrics) =>
     set((state) => ({

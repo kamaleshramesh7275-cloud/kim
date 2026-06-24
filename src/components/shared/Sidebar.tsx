@@ -19,6 +19,7 @@ const COACH_LINKS = [
   { href: "/coach/injury-alerts", label: "Injury Alerts", icon: AlertTriangle },
   { href: "/coach/workload-alerts", label: "Workload Alerts", icon: Flame },
   { href: "/coach/reports", label: "Reports & Analytics", icon: FileText },
+  { href: "/coach/profile", label: "Coach Profile", icon: UserSquare2 },
 ];
 
 const PLAYER_LINKS = [
