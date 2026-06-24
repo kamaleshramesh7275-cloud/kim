@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Zap, Shield, TrendingUp, Users, Activity, HeartPulse,
   AlertTriangle, Flame, BarChart3, CheckCircle2, Star,
-  ArrowRight, Trophy, Target, Brain, Clock
+  ArrowRight, Trophy, Target, Brain, Clock, X
 } from "lucide-react";
 
 /* ── reusable fade-up wrapper ── */
@@ -104,6 +105,29 @@ const TESTIMONIALS = [
 ];
 
 export default function LandingPage() {
+  const router = useRouter();
+  const [isCoachModalOpen, setIsCoachModalOpen] = useState(false);
+  const [isPlayerModalOpen, setIsPlayerModalOpen] = useState(false);
+  const [coachCode, setCoachCode] = useState("");
+  const [playerError, setPlayerError] = useState("");
+
+  const handleVerifyPlayerCode = (e: React.FormEvent) => {
+    e.preventDefault();
+    setPlayerError("");
+    const cleaned = coachCode.trim().toUpperCase();
+    const storedCode = (typeof window !== "undefined" ? window.localStorage.getItem("coachPermanentCode") : null) || "COACH123";
+
+    if (cleaned === storedCode.toUpperCase() || cleaned === "COACH123") {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("playerVerifiedCoachCode", cleaned);
+      }
+      setIsPlayerModalOpen(false);
+      router.push(`/auth/player-login?codeVerified=true&code=${cleaned}`);
+    } else {
+      setPlayerError("Invalid coach permanent code. Check with your coach or try COACH123.");
+    }
+  };
+
   return (
     <div className="min-h-screen" style={{ background: "#050811" }}>
 
@@ -173,28 +197,26 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 mb-14"
         >
-          <Link href="/auth/coach-login">
-            <motion.div
-              whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(168,85,247,0.6)" }}
-              whileTap={{ scale: 0.97 }}
-              className="px-7 py-3.5 rounded-xl font-bold text-white flex items-center gap-2 cursor-pointer"
-              style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)" }}
-            >
-              <Shield className="w-4 h-4" /> Coach Portal
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </motion.div>
-          </Link>
-          <Link href="/auth/player-login">
-            <motion.div
-              whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.4)", borderColor: "rgba(34,211,238,0.5)" }}
-              whileTap={{ scale: 0.97 }}
-              className="px-7 py-3.5 rounded-xl font-bold text-white flex items-center gap-2 cursor-pointer border border-cyan-500/30 transition-all"
-              style={{ background: "rgba(34,211,238,0.1)" }}
-            >
-              <Flame className="w-4 h-4 text-cyan-400" /> Player Portal
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </motion.div>
-          </Link>
+          <motion.div
+            onClick={() => setIsCoachModalOpen(true)}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(168,85,247,0.6)" }}
+            whileTap={{ scale: 0.97 }}
+            className="px-7 py-3.5 rounded-xl font-bold text-white flex items-center gap-2 cursor-pointer"
+            style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)" }}
+          >
+            <Shield className="w-4 h-4" /> Coach Portal
+            <ArrowRight className="w-4 h-4 ml-1" />
+          </motion.div>
+          <motion.div
+            onClick={() => setIsPlayerModalOpen(true)}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(34,211,238,0.4)", borderColor: "rgba(34,211,238,0.5)" }}
+            whileTap={{ scale: 0.97 }}
+            className="px-7 py-3.5 rounded-xl font-bold text-white flex items-center gap-2 cursor-pointer border border-cyan-500/30 transition-all"
+            style={{ background: "rgba(34,211,238,0.1)" }}
+          >
+            <Flame className="w-4 h-4 text-cyan-400" /> Player Portal
+            <ArrowRight className="w-4 h-4 ml-1" />
+          </motion.div>
         </motion.div>
 
         {/* Live Stats Bar */}
@@ -341,26 +363,24 @@ export default function LandingPage() {
             <p className="text-slate-500 mb-8 max-w-md mx-auto">Join elite teams already using Smart Recovery to prevent injuries and maximise performance.</p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link href="/auth/coach-login">
-                <motion.div
-                  whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(168,85,247,0.6)" }}
-                  whileTap={{ scale: 0.97 }}
-                  className="px-8 py-3.5 rounded-xl font-bold text-white cursor-pointer flex items-center gap-2"
-                  style={{ background: "linear-gradient(135deg, #a855f7, #22d3ee)" }}
-                >
-                  <Shield className="w-4 h-4" /> Coach Sign In
-                </motion.div>
-              </Link>
-              <Link href="/auth/player-login">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="px-8 py-3.5 rounded-xl font-bold text-slate-300 cursor-pointer border border-white/10 hover:border-white/20 transition-all flex items-center gap-2"
-                  style={{ background: "rgba(255,255,255,0.04)" }}
-                >
-                  <Flame className="w-4 h-4 text-cyan-400" /> Player Sign In
-                </motion.div>
-              </Link>
+              <motion.div
+                onClick={() => setIsCoachModalOpen(true)}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(168,85,247,0.6)" }}
+                whileTap={{ scale: 0.97 }}
+                className="px-8 py-3.5 rounded-xl font-bold text-white cursor-pointer flex items-center gap-2"
+                style={{ background: "linear-gradient(135deg, #a855f7, #22d3ee)" }}
+              >
+                <Shield className="w-4 h-4" /> Coach Sign In
+              </motion.div>
+              <motion.div
+                onClick={() => setIsPlayerModalOpen(true)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-8 py-3.5 rounded-xl font-bold text-slate-300 cursor-pointer border border-white/10 hover:border-white/20 transition-all flex items-center gap-2"
+                style={{ background: "rgba(255,255,255,0.04)" }}
+              >
+                <Flame className="w-4 h-4 text-cyan-400" /> Player Sign In
+              </motion.div>
             </div>
 
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
@@ -386,6 +406,155 @@ export default function LandingPage() {
         </div>
         <p className="text-[10px] text-slate-700">Built for elite performance. Powered by data.</p>
       </footer>
+
+      {/* Coach Portal Modal */}
+      <AnimatePresence>
+        {isCoachModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: "rgba(5,8,17,0.85)", backdropFilter: "blur(8px)" }}
+            onClick={() => setIsCoachModalOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md rounded-3xl border border-purple-500/20 p-8 relative overflow-hidden"
+              style={{
+                background: "rgba(15,23,42,0.95)",
+                backdropFilter: "blur(20px)",
+                boxShadow: "0 0 60px rgba(168,85,247,0.15)",
+              }}
+            >
+              <button
+                onClick={() => setIsCoachModalOpen(false)}
+                className="absolute top-5 right-5 text-slate-500 hover:text-white transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                style={{ background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)" }}>
+                <Shield className="w-6 h-6 text-purple-400" />
+              </div>
+
+              <h3 className="text-2xl font-black text-white mb-2">Coach Portal Access</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Choose an action to access the coach command center dashboard.
+              </p>
+
+              <div className="space-y-4">
+                <button
+                  onClick={() => {
+                    setIsCoachModalOpen(false);
+                    router.push("/auth/coach-login?mode=signin");
+                  }}
+                  className="w-full py-4 rounded-2xl font-bold text-white text-sm flex items-center justify-center gap-2 border border-purple-500/30 transition-all hover:bg-purple-500/10 cursor-pointer"
+                  style={{ background: "rgba(168,85,247,0.05)" }}
+                >
+                  Sign In to Coach Account
+                </button>
+                <button
+                  onClick={() => {
+                    setIsCoachModalOpen(false);
+                    router.push("/auth/coach-login?mode=signup");
+                  }}
+                  className="w-full py-4 rounded-2xl font-bold text-white text-sm flex items-center justify-center gap-2 transition-all cursor-pointer hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]"
+                  style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)" }}
+                >
+                  Create New Coach Account
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Player Portal Modal */}
+      <AnimatePresence>
+        {isPlayerModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: "rgba(5,8,17,0.85)", backdropFilter: "blur(8px)" }}
+            onClick={() => {
+              setIsPlayerModalOpen(false);
+              setPlayerError("");
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md rounded-3xl border border-cyan-500/20 p-8 relative overflow-hidden"
+              style={{
+                background: "rgba(15,23,42,0.95)",
+                backdropFilter: "blur(20px)",
+                boxShadow: "0 0 60px rgba(34,211,238,0.15)",
+              }}
+            >
+              <button
+                onClick={() => {
+                  setIsPlayerModalOpen(false);
+                  setPlayerError("");
+                }}
+                className="absolute top-5 right-5 text-slate-500 hover:text-white transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                style={{ background: "rgba(34,211,238,0.15)", border: "1px solid rgba(34,211,238,0.3)" }}>
+                <Flame className="w-6 h-6 text-cyan-400" />
+              </div>
+
+              <h3 className="text-2xl font-black text-white mb-2">Player Portal Access</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                Enter your coach's permanent code to access the player dashboard.
+              </p>
+
+              <form onSubmit={handleVerifyPlayerCode} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Coach Permanent Code</label>
+                  <input
+                    type="text"
+                    value={coachCode}
+                    onChange={(e) => setCoachCode(e.target.value)}
+                    placeholder="Enter code (e.g. COACH123)"
+                    className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-white/5 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500/50 transition-all text-sm uppercase tracking-wider"
+                    required
+                  />
+                  {playerError && (
+                    <p className="mt-2 text-xs text-rose-300">{playerError}</p>
+                  )}
+                  <p className="mt-3 text-[11px] text-slate-500">
+                    Tip: Ask your coach for their code, or use <span className="text-cyan-400 font-semibold select-all">COACH123</span> for testing.
+                  </p>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(34,211,238,0.5)" }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full py-3.5 rounded-xl font-bold text-white text-sm flex items-center justify-center gap-2 mt-4 cursor-pointer"
+                  style={{ background: "linear-gradient(135deg, #22d3ee, #0891b2)" }}
+                >
+                  <Zap className="w-4 h-4" /> Verify & Access Portal
+                </motion.button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

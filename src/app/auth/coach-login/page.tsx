@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useAppStore } from "@/lib/store";
@@ -54,56 +54,62 @@ export default function CoachLogin() {
   } = useForm<CoachLoginInputs>();
   const router = useRouter();
   const { login } = useAppStore();
+  
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [message, setMessage] = useState("");
-  const [showCreateNew, setShowCreateNew] = useState(false);
-  const [pendingAccount, setPendingAccount] = useState<CoachLoginInputs | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const m = params.get("mode");
+      if (m === "signup" || m === "signin") {
+        setMode(m);
+      }
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<CoachLoginInputs> = (data) => {
     setMessage("");
-    setShowCreateNew(false);
-    setPendingAccount(null);
 
     const normalizedEmail = data.email.trim().toLowerCase();
     const accounts = getSavedAccounts();
+    
     const existingCoach = accounts.find(
       (account) => account.email === normalizedEmail && account.role === "coach"
     );
     const existingAny = accounts.find((account) => account.email === normalizedEmail);
 
-    if (existingCoach && existingCoach.password !== data.password) {
-      setMessage(
-        "This coach email already exists with a different password. Create a new account if you need a separate login."
-      );
-      setShowCreateNew(true);
-      setPendingAccount({ email: normalizedEmail, password: data.password });
-      return;
+    if (mode === "signin") {
+      if (!existingCoach) {
+        setMessage("No coach account found with this email. Switch to Create Account or enter a registered email.");
+        return;
+      }
+      if (existingCoach.password !== data.password) {
+        setMessage("Incorrect password. Please try again.");
+        return;
+      }
+
+      // Successful login
+      login({ id: "c1", name: "Coach Carter", email: normalizedEmail, role: "coach" });
+      document.cookie = "authRole=coach; path=/";
+      router.push("/coach/dashboard");
+    } else {
+      // Create Account mode
+      if (existingCoach) {
+        setMessage("A coach account with this email already exists. Please switch to Sign In.");
+        return;
+      }
+      if (existingAny && existingAny.role !== "coach") {
+        setMessage("This email is already registered as a player. Use a different email to create a coach account.");
+        return;
+      }
+
+      // Successful registration
+      saveAccount({ email: normalizedEmail, password: data.password, role: "coach" });
+      login({ id: "c1", name: "Coach Carter", email: normalizedEmail, role: "coach" });
+      document.cookie = "authRole=coach; path=/";
+      router.push("/coach/dashboard");
     }
-
-    if (existingAny && existingAny.role !== "coach") {
-      setMessage(
-        "This email is already registered as a player. Use a different email or create a new coach account."
-      );
-      return;
-    }
-
-    saveAccount({ email: normalizedEmail, password: data.password, role: "coach" });
-    login({ id: "c1", name: "Coach Carter", email: normalizedEmail, role: "coach" });
-    document.cookie = "authRole=coach; path=/";
-    router.push("/coach/dashboard");
-  };
-
-  const handleCreateNewAccount = () => {
-    if (!pendingAccount) return;
-
-    saveAccount({
-      email: pendingAccount.email,
-      password: pendingAccount.password,
-      role: "coach",
-    });
-
-    login({ id: "c1", name: "Coach Carter", email: pendingAccount.email, role: "coach" });
-    document.cookie = "authRole=coach; path=/";
-    router.push("/coach/dashboard");
   };
 
   return (
@@ -130,8 +136,44 @@ export default function CoachLogin() {
             <Shield className="w-7 h-7 text-purple-400" />
           </motion.div>
 
-          <h1 className="text-2xl font-black text-white text-center mb-1">Coach Portal</h1>
-          <p className="text-slate-500 text-sm text-center mb-8">Access the team command center</p>
+          {/* Tabs for Sign In vs Create Account */}
+          <div className="flex rounded-xl bg-white/5 p-1 mb-6 border border-white/5">
+            <button
+              type="button"
+              onClick={() => {
+                setMode("signin");
+                setMessage("");
+              }}
+              className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
+                mode === "signin"
+                  ? "bg-purple-600 text-white shadow-lg"
+                  : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMode("signup");
+                setMessage("");
+              }}
+              className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all cursor-pointer ${
+                mode === "signup"
+                  ? "bg-purple-600 text-white shadow-lg"
+                  : "text-slate-400 hover:text-slate-200"
+              }`}
+            >
+              Create Account
+            </button>
+          </div>
+
+          <h1 className="text-2xl font-black text-white text-center mb-1">
+            {mode === "signin" ? "Coach Sign In" : "Create Coach Account"}
+          </h1>
+          <p className="text-slate-500 text-sm text-center mb-8">
+            {mode === "signin" ? "Access the team command center" : "Register a new coach command center"}
+          </p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
@@ -188,22 +230,12 @@ export default function CoachLogin() {
               whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(168,85,247,0.5)" }}
               whileTap={{ scale: 0.97 }}
               type="submit"
-              className="w-full py-3 rounded-xl font-bold text-white text-sm flex items-center justify-center gap-2 mt-2"
+              className="w-full py-3 rounded-xl font-bold text-white text-sm flex items-center justify-center gap-2 mt-2 cursor-pointer"
               style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)" }}
             >
               <Zap className="w-4 h-4" />
-              Access Coach Dashboard
+              {mode === "signin" ? "Access Coach Dashboard" : "Register & Enter Dashboard"}
             </motion.button>
-
-            {showCreateNew && pendingAccount ? (
-              <button
-                type="button"
-                onClick={handleCreateNewAccount}
-                className="w-full rounded-xl border border-white/10 bg-white/5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                Create New Account
-              </button>
-            ) : null}
           </form>
 
           <div className="mt-6 text-center">
