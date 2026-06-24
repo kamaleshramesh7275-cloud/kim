@@ -26,7 +26,7 @@ export default function AthleteProfilePage() {
   const athlete = athletes.find(a => a.id === id);
   const [dialogConfig, setDialogConfig] = useState<{ title: string; desc: string } | null>(null);
   const [isEditingInjury, setIsEditingInjury] = useState(false);
-  const [injuryForm, setInjuryForm] = useState({ type: "", severity: "low" as const, timeline: "", rehabPlan: "" });
+  const [injuryForm, setInjuryForm] = useState<{ type: string; severity: "low" | "medium" | "high"; timeline: string; rehabPlan: string }>({ type: "", severity: "low", timeline: "", rehabPlan: "" });
 
   if (!athlete) {
     return <div className="min-h-screen grid-bg flex items-center justify-center text-slate-600">Athlete not found</div>;
