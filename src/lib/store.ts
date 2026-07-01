@@ -1,17 +1,19 @@
 import { create } from "zustand";
 import { User, Athlete, Alert, TeamOverview, CurrentInjury } from "./types";
-import { MOCK_ATHLETES, MOCK_ALERTS, MOCK_TEAM_OVERVIEW } from "./mock";
+import { loadDatasetState } from "./data";
 
 interface AppState {
   user: User | null;
   athletes: Athlete[];
   alerts: Alert[];
   teamOverview: TeamOverview;
+  datasetSummary?: { recoveryRows: number; trainingRows: number };
   coachPermanentCode?: string;
   codeGeneratedAt?: string;
 
   // Actions
   login: (user: User) => void;
+  hydrateFromDatasets: () => Promise<void>;
   logout: () => void;
   setCoachPermanentCode: (code: string) => void;
   updateAthleteBiometrics: (id: string, biometrics: Partial<Athlete["biometrics"]>) => void;
@@ -21,13 +23,30 @@ interface AppState {
 
 export const useAppStore = create<AppState>((set) => ({
   user: null,
-  athletes: MOCK_ATHLETES,
-  alerts: MOCK_ALERTS,
-  teamOverview: MOCK_TEAM_OVERVIEW,
+  athletes: [],
+  alerts: [],
+  teamOverview: {
+    avgRecoveryScore: 0,
+    highRiskCount: 0,
+    totalAthletes: 0,
+    workloadAlertsCount: 0,
+    injuryRiskAlertsCount: 0,
+  },
+  datasetSummary: undefined,
   coachPermanentCode: undefined,
   codeGeneratedAt: undefined,
 
   login: (user) => set({ user }),
+
+  hydrateFromDatasets: async () => {
+    const state = await loadDatasetState();
+    set({
+      athletes: state.athletes,
+      alerts: state.alerts,
+      teamOverview: state.teamOverview,
+      datasetSummary: state.datasetSummary,
+    });
+  },
   logout: () => set({ user: null }),
   setCoachPermanentCode: (code) => set({ coachPermanentCode: code, codeGeneratedAt: new Date().toISOString() }),
   

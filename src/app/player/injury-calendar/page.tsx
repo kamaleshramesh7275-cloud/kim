@@ -1,6 +1,7 @@
 "use client";
 
 import { useAppStore } from "@/lib/store";
+import type { Athlete } from "@/lib/types";
 import { Calendar, AlertTriangle, CheckCircle2, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -9,7 +10,26 @@ const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function InjuryCalendar() {
   const { user, athletes } = useAppStore();
-  const athlete = athletes.find(a => a.id === user?.id) || athletes[0];
+  const fallbackAthlete: Athlete = {
+    id: "loading",
+    name: "Loading",
+    position: "Recovery",
+    recoveryScore: 0,
+    injuryStatus: "Healthy",
+    lastUpdated: "Loading",
+    streakDays: 0,
+    points: 0,
+    biometrics: {
+      sleep: 0,
+      hydration: 0,
+      soreness: 0,
+      fatigue: 0,
+      stress: 0,
+      trainingLoad: 0,
+    },
+    pastInjuries: [],
+  };
+  const athlete = athletes.find(a => a.id === user?.id) || athletes[0] || fallbackAthlete;
   const injuries = athlete.pastInjuries || [];
 
   const now = new Date();

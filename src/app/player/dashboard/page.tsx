@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
-import { CheckCircle2, XCircle, ChevronRight, Activity, Moon, Droplets, Flame, Star, Zap } from "lucide-react";
+import type { Athlete } from "@/lib/types";
+import { CheckCircle2, XCircle, ChevronRight, Activity, Moon, Droplets, Flame, Star, Zap, Database } from "lucide-react";
 import { motion } from "framer-motion";
 
 const container = {
@@ -14,8 +16,31 @@ const item = {
 };
 
 export default function PlayerDashboard() {
-  const { user, athletes } = useAppStore();
-  const athlete = athletes.find(a => a.id === user?.id) || athletes[0];
+  const { user, athletes, datasetSummary, hydrateFromDatasets } = useAppStore();
+  const fallbackAthlete: Athlete = {
+    id: "loading",
+    name: "Loading",
+    position: "Recovery",
+    recoveryScore: 0,
+    injuryStatus: "Healthy",
+    lastUpdated: "Loading",
+    streakDays: 0,
+    points: 0,
+    biometrics: {
+      sleep: 0,
+      hydration: 0,
+      soreness: 0,
+      fatigue: 0,
+      stress: 0,
+      trainingLoad: 0,
+    },
+    pastInjuries: [],
+  };
+  const athlete = athletes.find(a => a.id === user?.id) || athletes[0] || fallbackAthlete;
+
+  useEffect(() => {
+    void hydrateFromDatasets();
+  }, [hydrateFromDatasets]);
 
   const score = athlete.recoveryScore;
   const scoreColor = score >= 80 ? "#4ade80" : score >= 60 ? "#fbbf24" : "#f43f5e";
@@ -61,6 +86,18 @@ export default function PlayerDashboard() {
           </div>
         </div>
       </motion.div>
+
+      {datasetSummary && (
+        <motion.div variants={item} className="rounded-xl border border-cyan-500/20 p-3 flex items-center gap-4" style={{ background: "rgba(34,211,238,0.06)" }}>
+          <div className="flex items-center gap-2">
+            <Database className="w-4 h-4 text-cyan-400" />
+            <span className="text-xs font-bold text-cyan-300 uppercase tracking-widest">Live dataset</span>
+          </div>
+          <div className="flex-1 text-xs text-slate-400">
+            Recovery data from {datasetSummary.recoveryRows} rows and training metrics from {datasetSummary.trainingRows} rows are powering this dashboard.
+          </div>
+        </motion.div>
+      )}
 
       {/* XP Bar */}
       <motion.div variants={item} className="rounded-xl border border-purple-500/20 p-3 flex items-center gap-4"

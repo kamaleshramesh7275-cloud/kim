@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import {
   LayoutDashboard, Users, UserSquare2, Activity,
   HeartPulse, AlertTriangle, Flame, FileText, Calendar, Trophy,
+  Sparkles,
 } from "lucide-react";
 
 const COACH_LINKS = [
@@ -27,6 +28,7 @@ const PLAYER_LINKS = [
   { href: "/player/recovery-streaks", label: "Recovery Streaks", icon: Flame },
   { href: "/player/injury-calendar", label: "Injury Calendar", icon: Calendar },
   { href: "/player/leaderboard", label: "Leaderboard", icon: Trophy },
+  { href: "/player/ai-chat", label: "AI Advisor", icon: Sparkles },
 ];
 
 export function Sidebar() {

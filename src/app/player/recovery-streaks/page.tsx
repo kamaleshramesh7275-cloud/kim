@@ -1,6 +1,7 @@
 "use client";
 
 import { useAppStore } from "@/lib/store";
+import type { Athlete } from "@/lib/types";
 import { Flame, Star, CheckCircle2, Target, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -16,7 +17,26 @@ const MILESTONES = [
 
 export default function RecoveryStreaks() {
   const { user, athletes, updateAthleteBiometrics } = useAppStore();
-  const athlete = athletes.find(a => a.id === user?.id) || athletes[0];
+  const fallbackAthlete: Athlete = {
+    id: "loading",
+    name: "Loading",
+    position: "Recovery",
+    recoveryScore: 0,
+    injuryStatus: "Healthy",
+    lastUpdated: "Loading",
+    streakDays: 0,
+    points: 0,
+    biometrics: {
+      sleep: 0,
+      hydration: 0,
+      soreness: 0,
+      fatigue: 0,
+      stress: 0,
+      trainingLoad: 0,
+    },
+    pastInjuries: [],
+  };
+  const athlete = athletes.find(a => a.id === user?.id) || athletes[0] || fallbackAthlete;
   const [submitted, setSubmitted] = useState(false);
 
   const { register, handleSubmit, reset } = useForm({
