@@ -22,9 +22,11 @@ export default function AthleteProfilePage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
-  const { athletes } = useAppStore();
+  const { athletes, updateAthleteInjury } = useAppStore();
   const athlete = athletes.find(a => a.id === id);
   const [dialogConfig, setDialogConfig] = useState<{ title: string; desc: string } | null>(null);
+  const [isEditingInjury, setIsEditingInjury] = useState(false);
+  const [injuryForm, setInjuryForm] = useState<{ type: string; severity: "low" | "medium" | "high"; timeline: string; rehabPlan: string; }>({ type: "", severity: "low", timeline: "", rehabPlan: "" });
 
   if (!athlete) {
     return <div className="min-h-screen grid-bg flex items-center justify-center text-slate-600">Athlete not found</div>;
@@ -156,11 +158,83 @@ export default function AthleteProfilePage() {
         <div className="space-y-4">
           <motion.div variants={item} className="rounded-2xl border border-white/5 p-5"
             style={{ background: "rgba(15,23,42,0.7)" }}>
-            <div className="flex items-center gap-2 mb-4">
-              <HeartPulse className="w-4 h-4 text-rose-400" />
-              <h2 className="font-bold text-white uppercase tracking-wider text-sm">Current Medical Status</h2>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <HeartPulse className="w-4 h-4 text-rose-400" />
+                <h2 className="font-bold text-white uppercase tracking-wider text-sm">Current Medical Status</h2>
+              </div>
+              {!isEditingInjury && (
+                <button 
+                  onClick={() => {
+                    setInjuryForm(athlete.currentInjury || { type: "", severity: "low", timeline: "", rehabPlan: "" });
+                    setIsEditingInjury(true);
+                  }}
+                  className="text-xs font-semibold px-3 py-1.5 rounded bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 hover:text-blue-300 transition-colors"
+                >
+                  {athlete.currentInjury ? "Edit Status" : "Report Injury"}
+                </button>
+              )}
             </div>
-            {athlete.currentInjury ? (
+            {isEditingInjury ? (
+              <div className="space-y-3 mt-4">
+                <input
+                  type="text"
+                  placeholder="Diagnosis (e.g. Sprained Ankle)"
+                  className="w-full bg-slate-800/50 text-white rounded-lg px-4 py-2.5 text-sm border border-white/10 focus:outline-none focus:border-blue-500"
+                  value={injuryForm.type}
+                  onChange={e => setInjuryForm({ ...injuryForm, type: e.target.value })}
+                />
+                <select
+                  className="w-full bg-slate-800/50 text-white rounded-lg px-4 py-2.5 text-sm border border-white/10 focus:outline-none focus:border-blue-500"
+                  value={injuryForm.severity}
+                  onChange={e => setInjuryForm({ ...injuryForm, severity: e.target.value as any })}
+                >
+                  <option value="low">Low Severity</option>
+                  <option value="medium">Medium Severity</option>
+                  <option value="high">High Severity</option>
+                </select>
+                <input
+                  type="text"
+                  placeholder="Est. Return Timeline (e.g. 2 weeks)"
+                  className="w-full bg-slate-800/50 text-white rounded-lg px-4 py-2.5 text-sm border border-white/10 focus:outline-none focus:border-blue-500"
+                  value={injuryForm.timeline}
+                  onChange={e => setInjuryForm({ ...injuryForm, timeline: e.target.value })}
+                />
+                <textarea
+                  placeholder="Rehab Protocol"
+                  className="w-full bg-slate-800/50 text-white rounded-lg px-4 py-2.5 text-sm border border-white/10 focus:outline-none focus:border-blue-500 min-h-[80px]"
+                  value={injuryForm.rehabPlan}
+                  onChange={e => setInjuryForm({ ...injuryForm, rehabPlan: e.target.value })}
+                />
+                <div className="flex gap-2 justify-end pt-3 border-t border-white/5 mt-2">
+                  <button 
+                    onClick={() => setIsEditingInjury(false)} 
+                    className="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  {athlete.currentInjury && (
+                    <button 
+                      onClick={() => { updateAthleteInjury(id, undefined); setIsEditingInjury(false); }} 
+                      className="px-4 py-2 text-xs font-semibold bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 rounded-lg transition-colors mr-auto"
+                    >
+                      Clear Injury
+                    </button>
+                  )}
+                  <button 
+                    onClick={() => { 
+                      if(injuryForm.type.trim()) {
+                        updateAthleteInjury(id, injuryForm as any);
+                      }
+                      setIsEditingInjury(false); 
+                    }} 
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold transition-colors"
+                  >
+                    Save Status
+                  </button>
+                </div>
+              </div>
+            ) : athlete.currentInjury ? (
               <div className="space-y-3">
                 {[
                   { label: "Diagnosis", value: athlete.currentInjury.type, color: "#f43f5e" },
