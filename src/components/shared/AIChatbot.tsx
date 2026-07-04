@@ -140,6 +140,14 @@ function formatRecordForSearch(datasetName: string, record: Record<string, strin
     .join("; ");
 }
 
+function formatMessageTime(timestamp: Date) {
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "UTC",
+  }).format(timestamp);
+}
+
 export default function AIChatbot() {
   // --- STATE ---
   const [datasets, setDatasets] = useState<Dataset[]>([]);
@@ -149,7 +157,7 @@ export default function AIChatbot() {
       role: "assistant",
       content: `Hello! I am your **Smart Recovery AI Advisor**. 
       
-I can search through your local CSV athletic recovery databases, training records, and nutrition plans to give you precise guidance.
+I can search through your local recovery datasets and an embedded knowledge document to give you context-aware coaching guidance.
 
 Ask me questions like:
 - **"What to eat after heavy training?"**
@@ -438,6 +446,9 @@ ${actionItems.join("\n")}
     const searchMatches = performRAGSearch(queryText);
 
     try {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 15000);
+
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: {
@@ -447,8 +458,10 @@ ${actionItems.join("\n")}
           message: queryText,
           apiKey,
         }),
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
       const data = await res.json();
 
       if (!res.ok) {
@@ -466,12 +479,16 @@ ${actionItems.join("\n")}
         },
       ]);
     } catch (err: any) {
+      const messageText = err?.name === "AbortError"
+        ? "The chat request timed out. A safe recovery answer was not returned in time."
+        : `**Error while fetching from the backend knowledge base**: ${err.message}.`;
+
       setMessages(prev => [
         ...prev,
         {
           id: (Date.now() + 1).toString(),
           role: "system",
-          content: `**Error while fetching from the backend knowledge base**: ${err.message}.`,
+          content: messageText,
           timestamp: new Date(),
           matchedSources: [],
         },
@@ -782,7 +799,7 @@ ${actionItems.join("\n")}
                       "flex items-center gap-2 mt-1.5 text-[10px] text-slate-500",
                       isAI ? "justify-start pl-1" : "justify-end pr-1"
                     )}>
-                      <span>{m.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                      <span>{formatMessageTime(m.timestamp)}</span>
                       {m.matchedSources && m.matchedSources.length > 0 && (
                         <>
                           <span>•</span>
