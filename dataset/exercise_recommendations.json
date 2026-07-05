@@ -1,0 +1,150 @@
+{
+  "recommendations": {
+    "Fever": {
+      "recommended": [
+        "None - prioritised rest",
+        "Very light passive stretching in bed once fever breaks"
+      ],
+      "avoid": [
+        "All forms of physical exercise",
+        "Weightlifting",
+        "Cardio training",
+        "Outdoor walks in cold/hot weather"
+      ],
+      "notes": "Exercising with a fever raises core body temperature to dangerous levels and risks severe illness or myocarditis. Rest completely."
+    },
+    "Cold": {
+      "recommended": [
+        "Light walking",
+        "Gentle hatha yoga",
+        "Light mobility exercises",
+        "Easy cycling"
+      ],
+      "avoid": [
+        "Heavy weightlifting",
+        "High intensity interval training (HIIT)",
+        "Long endurance runs",
+        "Team sports"
+      ],
+      "notes": "Follow the 'Above the Neck' rule. If symptoms are above the neck (runny nose, sneezing), light exercise is safe. If you feel body aches or chest congestion, rest."
+    },
+    "Flu": {
+      "recommended": [
+        "None - complete physical rest",
+        "Simple breathing exercises"
+      ],
+      "avoid": [
+        "All running and walking",
+        "Strength training",
+        "Stretching that causes strain",
+        "Gym visits (prevents spreading)"
+      ],
+      "notes": "Flu impacts the entire body system. Do not exercise. Return to light activity only after being symptom-free for at least 48 hours."
+    },
+    "Cough": {
+      "recommended": [
+        "Gentle indoor walking",
+        "Low-intensity mobility work",
+        "Tai Chi"
+      ],
+      "avoid": [
+        "High-impact running (triggers coughing fits)",
+        "Cold outdoor workouts",
+        "Heavy cardiovascular training"
+      ],
+      "notes": "If the cough is chesty, productive, or accompanied by wheezing, avoid workouts. Ensure warm humid environment for any mild movement."
+    },
+    "Sore Throat": {
+      "recommended": [
+        "Walking at moderate pace",
+        "Light flexibility stretching",
+        "Gentle yoga"
+      ],
+      "avoid": [
+        "Intense heavy breathing workouts",
+        "Cardio that dries the throat",
+        "Swimming in chlorinated pools (irritates airway)"
+      ],
+      "notes": "Light physical activity is fine if you have energy and no fever. Drink water frequently to keep throat hydrated."
+    },
+    "Headache": {
+      "recommended": [
+        "Neck and shoulder stretches",
+        "Gentle yoga (avoid inversions)",
+        "Quiet walking in fresh air"
+      ],
+      "avoid": [
+        "Heavy deadlifts/squats (increases cranial pressure)",
+        "High-impact jumping/running",
+        "Workouts with loud music/bright lights"
+      ],
+      "notes": "Light stretching helps if the headache is caused by neck tension. Avoid rapid head movements or heavy straining."
+    },
+    "Diarrhea": {
+      "recommended": [
+        "None during acute phase",
+        "Very light restorative yoga once recovering",
+        "Short slow walk"
+      ],
+      "avoid": [
+        "Running and jogging (creates bowel friction)",
+        "Abdominal core exercises",
+        "Heavy lifting",
+        "Long workouts"
+      ],
+      "notes": "Dehydration risk is very high. Avoid sweating or heavy physical exertion. Keep workouts very short and keep water/electrolytes nearby."
+    },
+    "Constipation": {
+      "recommended": [
+        "Brisk walking",
+        "Jogging or running",
+        "Abdominal twists and pelvic stretches",
+        "Swimming",
+        "Jump rope"
+      ],
+      "avoid": [
+        "Prolonged sitting exercises (stationary cycling for hours)",
+        "None - physical activity is highly recommended"
+      ],
+      "notes": "Exercise stimulates the natural contractions of your bowel muscles. Staying active is one of the best ways to relieve constipation."
+    },
+    "Food Poisoning": {
+      "recommended": [
+        "Complete bed rest",
+        "Very gentle stretching after symptoms break"
+      ],
+      "avoid": [
+        "All gym workouts",
+        "Any activity that induces sweating",
+        "Bending/twisting movements"
+      ],
+      "notes": "Your body has lost fluids and energy. Exercise is dangerous. Allow your stomach and hydration levels to fully normalize first."
+    },
+    "Dehydration": {
+      "recommended": [
+        "None - sit or lie down in a cool shaded room",
+        "Gentle leg elevation"
+      ],
+      "avoid": [
+        "All physical exertion",
+        "Sweating in hot environments",
+        "Standing for long periods"
+      ],
+      "notes": "Exercising while dehydrated can cause heat exhaustion, heat stroke, fainting, and severe muscle cramping. Rehydrate and rest."
+    },
+    "Seasonal Allergies": {
+      "recommended": [
+        "Indoor gym workouts",
+        "Swimming in indoor pools",
+        "Indoor yoga and Pilates",
+        "Evening walks (pollen is lower)"
+      ],
+      "avoid": [
+        "Early morning outdoor running (peak pollen time)",
+        "Workouts near cut grass or blooming flowers",
+        "High-intensity outdoor training"
+      ],
+      "notes": "Work out indoors when pollen counts are high. Wash your body and clothes immediately after being outside."
+    }
+  }
+}

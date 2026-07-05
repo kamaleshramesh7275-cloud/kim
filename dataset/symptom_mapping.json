@@ -1,0 +1,165 @@
+{
+  "mapping": {
+    "fever": [
+      "Fever",
+      "Flu",
+      "Food Poisoning",
+      "Cold"
+    ],
+    "high body temperature": [
+      "Fever"
+    ],
+    "chills": [
+      "Fever",
+      "Flu"
+    ],
+    "sweating": [
+      "Fever",
+      "Dehydration"
+    ],
+    "headache": [
+      "Fever",
+      "Flu",
+      "Headache",
+      "Dehydration"
+    ],
+    "head pain": [
+      "Headache"
+    ],
+    "throbbing pain": [
+      "Headache"
+    ],
+    "temple pain": [
+      "Headache"
+    ],
+    "muscle aches": [
+      "Fever",
+      "Flu"
+    ],
+    "body aches": [
+      "Flu",
+      "Cold"
+    ],
+    "fatigue": [
+      "Fever",
+      "Flu",
+      "Cold",
+      "Dehydration"
+    ],
+    "weakness": [
+      "Food Poisoning",
+      "Dehydration"
+    ],
+    "runny nose": [
+      "Cold",
+      "Seasonal Allergies"
+    ],
+    "sneezing": [
+      "Cold",
+      "Seasonal Allergies"
+    ],
+    "sore throat": [
+      "Cold",
+      "Flu",
+      "Sore Throat"
+    ],
+    "painful swallowing": [
+      "Sore Throat",
+      "Cold"
+    ],
+    "scratchy throat": [
+      "Sore Throat",
+      "Cold",
+      "Seasonal Allergies"
+    ],
+    "swollen glands": [
+      "Sore Throat"
+    ],
+    "coughing": [
+      "Cough",
+      "Cold",
+      "Flu"
+    ],
+    "cough": [
+      "Cough",
+      "Cold",
+      "Flu"
+    ],
+    "dry cough": [
+      "Flu",
+      "Cough"
+    ],
+    "mild cough": [
+      "Cold"
+    ],
+    "congestion": [
+      "Cold",
+      "Seasonal Allergies"
+    ],
+    "nasal congestion": [
+      "Cold"
+    ],
+    "watery eyes": [
+      "Cold",
+      "Seasonal Allergies"
+    ],
+    "itchy eyes": [
+      "Seasonal Allergies"
+    ],
+    "loose stools": [
+      "Diarrhea",
+      "Food Poisoning"
+    ],
+    "watery stools": [
+      "Diarrhea",
+      "Food Poisoning"
+    ],
+    "abdominal cramps": [
+      "Diarrhea",
+      "Food Poisoning"
+    ],
+    "stomach cramps": [
+      "Food Poisoning",
+      "Diarrhea"
+    ],
+    "bloating": [
+      "Diarrhea",
+      "Constipation"
+    ],
+    "nausea": [
+      "Diarrhea",
+      "Food Poisoning"
+    ],
+    "vomiting": [
+      "Food Poisoning"
+    ],
+    "hard stools": [
+      "Constipation"
+    ],
+    "infrequent bowel movements": [
+      "Constipation"
+    ],
+    "straining": [
+      "Constipation"
+    ],
+    "extreme thirst": [
+      "Dehydration"
+    ],
+    "dry mouth": [
+      "Dehydration"
+    ],
+    "dark yellow urine": [
+      "Dehydration"
+    ],
+    "dark urine": [
+      "Dehydration"
+    ],
+    "dizziness": [
+      "Dehydration",
+      "Headache"
+    ],
+    "dry skin": [
+      "Dehydration"
+    ]
+  }
+}

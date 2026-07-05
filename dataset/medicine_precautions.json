@@ -1,0 +1,133 @@
+{
+  "recommendations": {
+    "Fever": {
+      "medications": [
+        "Acetaminophen (Paracetamol)",
+        "Ibuprofen"
+      ],
+      "precautions": [
+        "Do not exceed 4000mg of Acetaminophen in 24 hours to avoid liver damage",
+        "Avoid Ibuprofen on an empty stomach to prevent gastric irritation",
+        "Never give Aspirin to children or teenagers due to the risk of Reye's syndrome",
+        "Consult a doctor if taking other multi-symptom cold meds to avoid double dosing"
+      ]
+    },
+    "Cold": {
+      "medications": [
+        "Decongestants (Pseudoephedrine)",
+        "Antihistamines",
+        "Saline Nasal Sprays"
+      ],
+      "precautions": [
+        "Avoid using nasal decongestant sprays for more than 3-5 consecutive days to prevent rebound congestion",
+        "Be aware that first-generation antihistamines cause drowsiness; do not drive",
+        "Pseudoephedrine can increase blood pressure and heart rate; consult doctor if hypertensive"
+      ]
+    },
+    "Flu": {
+      "medications": [
+        "Antiviral drugs (Oseltamivir/Tamiflu - prescription)",
+        "Acetaminophen",
+        "Ibuprofen"
+      ],
+      "precautions": [
+        "Antivirals are most effective when started within 48 hours of symptom onset",
+        "Avoid taking multiple NSAIDs (like Ibuprofen and Naproxen) together",
+        "Ensure proper liver and kidney checks if taking prescription medications"
+      ]
+    },
+    "Cough": {
+      "medications": [
+        "Expectorants (Guaifenesin)",
+        "Suppressants (Dextromethorphan)",
+        "Throat lozenges"
+      ],
+      "precautions": [
+        "Use expectorants for wet, productive coughs to thin mucus, not suppressants",
+        "Use suppressants for dry, tickly coughs that prevent sleep",
+        "Do not give over-the-counter cough medicines to children under 4-6 years without doctor approval"
+      ]
+    },
+    "Sore Throat": {
+      "medications": [
+        "Anesthetic lozenges (containing benzocaine or menthol)",
+        "Acetaminophen",
+        "Warm saltwater gargle"
+      ],
+      "precautions": [
+        "Anesthetic lozenges numb the throat; avoid hot foods immediately after use to prevent burns",
+        "If a sore throat is bacterial (Strep throat), antibiotics are required; complete the entire course",
+        "Do not use throat sprays containing phenol frequently or for more than 2 days"
+      ]
+    },
+    "Headache": {
+      "medications": [
+        "Aspirin",
+        "Ibuprofen",
+        "Acetaminophen",
+        "Combination pain relievers (with Caffeine)"
+      ],
+      "precautions": [
+        "Limit use of pain relief medications to 2-3 days per week to avoid medication overuse (rebound) headaches",
+        "Caffeine helps absorb pain relievers but can trigger withdrawal headaches if stopped suddenly",
+        "Do not drink alcohol while taking Acetaminophen (increases liver toxicity)"
+      ]
+    },
+    "Diarrhea": {
+      "medications": [
+        "Loperamide (Imodium)",
+        "Bismuth Subsalicylate (Pepto-Bismol)"
+      ],
+      "precautions": [
+        "Do not use anti-diarrheals if you have a high fever, severe abdominal pain, or bloody stools (indicates bacterial/parasitic infection)",
+        "Bismuth subsalicylate can turn your tongue or stool black, which is harmless",
+        "Loperamide should be discontinued if symptoms worsen or last more than 48 hours"
+      ]
+    },
+    "Constipation": {
+      "medications": [
+        "Bulk-forming laxatives (Psyllium)",
+        "Osmotic laxatives (Polyethylene glycol/Miralax)",
+        "Stimulant laxatives (Senna)"
+      ],
+      "precautions": [
+        "Always drink a full glass of water with bulk-forming laxatives to prevent bowel obstruction",
+        "Limit the use of stimulant laxatives to avoid dependency and lazy bowel syndrome",
+        "Consult a doctor if constipation persists for more than 7 days despite laxative use"
+      ]
+    },
+    "Food Poisoning": {
+      "medications": [
+        "Oral Rehydration Salts (ORS)",
+        "Anti-nausea medication (prescription)"
+      ],
+      "precautions": [
+        "Avoid taking anti-diarrheal medications immediately; the body needs to expel the bacteria/toxins",
+        "Do not force food; focus entirely on keeping hydrated with ORS",
+        "Consult a physician before taking antibiotics as they are useless against viral or toxin-mediated poisoning"
+      ]
+    },
+    "Dehydration": {
+      "medications": [
+        "Oral Rehydration Salts (ORS)",
+        "Intravenous (IV) fluids (emergency only)"
+      ],
+      "precautions": [
+        "ORS should be mixed precisely as instructed on the packet; do not add extra sugar or salt",
+        "Avoid sports drinks as your primary hydration source if they contain excessive sugar (which can worsen diarrhea)",
+        "Seek immediate IV fluid therapy in a clinical setting if vomiting prevents oral fluid intake"
+      ]
+    },
+    "Seasonal Allergies": {
+      "medications": [
+        "Nonsedating antihistamines (Loratadine, Cetirizine)",
+        "Nasal corticosteroid sprays (Fluticasone)"
+      ],
+      "precautions": [
+        "Nasal corticosteroid sprays must be used daily for optimal effectiveness, not just on-demand",
+        "Spray nasal medications away from the nasal septum (center wall) to avoid irritation or bleeding",
+        "Be cautious with allergy medications containing decongestants (labeled -D) due to blood pressure risks"
+      ]
+    }
+  }
+}

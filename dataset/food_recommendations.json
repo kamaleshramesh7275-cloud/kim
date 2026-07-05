@@ -1,0 +1,184 @@
+{
+  "recommendations": {
+    "Fever": {
+      "recommended": [
+        "Rice porridge (Kanji)",
+        "Clear chicken or vegetable broth",
+        "Steamed Idli",
+        "Ripe bananas",
+        "Applesauce",
+        "Greek yogurt"
+      ],
+      "avoid": [
+        "Fried chicken",
+        "Oily curries",
+        "Alcoholic beverages",
+        "Coffee and tea",
+        "Highly processed fast foods"
+      ]
+    },
+    "Cold": {
+      "recommended": [
+        "Chicken noodle soup",
+        "Garlic infused broth",
+        "Ginger tea with honey",
+        "Oranges and citrus fruits",
+        "Strawberries",
+        "Warm oatmeal"
+      ],
+      "avoid": [
+        "Ice cream",
+        "Chilled sodas",
+        "Deep-fried snacks",
+        "Excess dairy products (if they thicken mucus)"
+      ]
+    },
+    "Flu": {
+      "recommended": [
+        "Bone broth",
+        "Scrambled eggs",
+        "Steamed vegetables",
+        "Plain oatmeal",
+        "Mashed sweet potatoes",
+        "Soft toast"
+      ],
+      "avoid": [
+        "Heavy greasy foods",
+        "Spicy peppers",
+        "Carbonated energy drinks",
+        "Alcohol",
+        "Hard/crunchy snacks that irritate throat"
+      ]
+    },
+    "Cough": {
+      "recommended": [
+        "Warm ginger tea with raw honey",
+        "Pineapple slices (contains bromelain)",
+        "Warm soups",
+        "Baked pears",
+        "Licorice root tea"
+      ],
+      "avoid": [
+        "Dry crackers",
+        "Crisps/chips",
+        "Spicy food",
+        "Ice cold water",
+        "Sugary sodas"
+      ]
+    },
+    "Sore Throat": {
+      "recommended": [
+        "Warm vegetable broth",
+        "Mashed potatoes",
+        "Yogurt",
+        "Scrambled eggs",
+        "Smoothies (non-acidic)",
+        "Oatmeal with honey"
+      ],
+      "avoid": [
+        "Potato chips",
+        "Dry toast",
+        "Citrus juices (orange, lemon - can sting)",
+        "Spicy food",
+        "Very hot liquids"
+      ]
+    },
+    "Headache": {
+      "recommended": [
+        "Watermelon",
+        "Cucumber slices",
+        "Almonds and walnuts",
+        "Spinach",
+        "Bananas (magnesium-rich)",
+        "Whole grain toast"
+      ],
+      "avoid": [
+        "Aged cheese (tyramine)",
+        "Processed meats (cured with nitrates)",
+        "Chocolate",
+        "Artificial sweeteners",
+        "Red wine"
+      ]
+    },
+    "Diarrhea": {
+      "recommended": [
+        "BRAT Diet: Bananas, white Rice, Applesauce, white Toast",
+        "Boiled potatoes",
+        "Saltine crackers",
+        "Plain oatmeal"
+      ],
+      "avoid": [
+        "Whole milk and cheese",
+        "Fried foods",
+        "Beans and broccoli (gas-forming)",
+        "Prunes and plums",
+        "Sugar-free gum (contains sorbitol)"
+      ]
+    },
+    "Constipation": {
+      "recommended": [
+        "Prunes and prune juice",
+        "High-fiber apples and pears",
+        "Chia seeds and flaxseeds",
+        "Broccoli and brussels sprouts",
+        "Beans and lentils"
+      ],
+      "avoid": [
+        "White bread and white rice",
+        "Processed meats",
+        "Unripe green bananas",
+        "Excessive cheese",
+        "Fast food chips"
+      ]
+    },
+    "Food Poisoning": {
+      "recommended": [
+        "Plain saltine crackers",
+        "Dry white toast",
+        "White rice",
+        "Applesauce",
+        "Bananas",
+        "Plain boiled chicken (when stomach settles)"
+      ],
+      "avoid": [
+        "Spicy food",
+        "Greasy fast food",
+        "Dairy products",
+        "Caffeine",
+        "Alcoholic beverages"
+      ]
+    },
+    "Dehydration": {
+      "recommended": [
+        "Watermelon",
+        "Cucumbers",
+        "Strawberries",
+        "Celery sticks",
+        "Tomatoes",
+        "Oranges"
+      ],
+      "avoid": [
+        "Salty potato chips",
+        "Cured bacon and meats",
+        "Strong black coffee",
+        "Energy drinks",
+        "Sugary soda drinks"
+      ]
+    },
+    "Seasonal Allergies": {
+      "recommended": [
+        "Local organic honey",
+        "Ginger and turmeric dishes",
+        "Berries and citrus fruits",
+        "Fatty fish (salmon, mackerel for Omega-3)",
+        "Onions (quercetin-rich)"
+      ],
+      "avoid": [
+        "Excess dairy (thickens mucus)",
+        "Processed seed oils",
+        "Alcohol",
+        "High-sugar treats"
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "age": 28,
+  "height": 178.0,
+  "weight": 74.5,
+  "allergies": [
+    "penicillin",
+    "peanuts"
+  ],
+  "chronic_diseases": [
+    "asthma"
+  ],
+  "medications": [
+    "albuterol inhaler (as needed)"
+  ],
+  "previous_illnesses": [
+    "seasonal flu",
+    "cold"
+  ],
+  "food_preferences": [
+    "none"
+  ],
+  "exercise_level": "moderate",
+  "sleep_habits": "7-8 hours"
+}

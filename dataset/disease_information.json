@@ -1,0 +1,144 @@
+{
+  "diseases": [
+    {
+      "disease_name": "Fever",
+      "symptoms": [
+        "high body temperature",
+        "chills",
+        "sweating",
+        "headache",
+        "muscle aches",
+        "fatigue"
+      ],
+      "description": "An elevation in body temperature above the normal range (98.6°F or 37°C), usually in response to an infection.",
+      "severity": "moderate"
+    },
+    {
+      "disease_name": "Cold",
+      "symptoms": [
+        "runny nose",
+        "sneezing",
+        "sore throat",
+        "mild cough",
+        "nasal congestion",
+        "watery eyes",
+        "low grade fever"
+      ],
+      "description": "A mild viral infection of the nose, throat, sinuses, and upper airways, very common and self-limiting.",
+      "severity": "mild"
+    },
+    {
+      "disease_name": "Flu",
+      "symptoms": [
+        "sudden high fever",
+        "severe body aches",
+        "dry cough",
+        "extreme fatigue",
+        "headache",
+        "sore throat",
+        "chills"
+      ],
+      "description": "A highly contagious viral infection of the respiratory tract, causing more severe symptoms than a common cold.",
+      "severity": "moderate"
+    },
+    {
+      "disease_name": "Cough",
+      "symptoms": [
+        "coughing",
+        "throat tickle",
+        "dry throat",
+        "mucus build up",
+        "chest discomfort"
+      ],
+      "description": "A reflex action to clear your airways of mucus and irritants. Can be dry (tickly) or chesty (productive).",
+      "severity": "mild"
+    },
+    {
+      "disease_name": "Sore Throat",
+      "symptoms": [
+        "painful swallowing",
+        "scratchy throat",
+        "redness in throat",
+        "swollen glands in neck"
+      ],
+      "description": "Pain, itchiness, or irritation of the throat that often worsens when you swallow. Usually viral, sometimes bacterial.",
+      "severity": "mild"
+    },
+    {
+      "disease_name": "Headache",
+      "symptoms": [
+        "head pain",
+        "throbbing pain",
+        "temple pain",
+        "neck stiffness",
+        "light sensitivity"
+      ],
+      "description": "Pain in any region of the head. Can be tension-type, migraine, or sinus-related.",
+      "severity": "mild"
+    },
+    {
+      "disease_name": "Diarrhea",
+      "symptoms": [
+        "loose stools",
+        "watery stools",
+        "abdominal cramps",
+        "bloating",
+        "nausea",
+        "urgency"
+      ],
+      "description": "Passing loose or watery stools three or more times a day, leading to rapid fluid and electrolyte loss.",
+      "severity": "moderate"
+    },
+    {
+      "disease_name": "Constipation",
+      "symptoms": [
+        "hard stools",
+        "infrequent bowel movements",
+        "straining",
+        "abdominal bloating",
+        "feeling of blockage"
+      ],
+      "description": "Difficulty in passing stools or bowel movements occurring less frequently than normal.",
+      "severity": "mild"
+    },
+    {
+      "disease_name": "Food Poisoning",
+      "symptoms": [
+        "nausea",
+        "vomiting",
+        "watery diarrhea",
+        "stomach cramps",
+        "fever",
+        "weakness"
+      ],
+      "description": "An illness caused by consuming food contaminated with bacteria, viruses, parasites, or toxins.",
+      "severity": "moderate"
+    },
+    {
+      "disease_name": "Dehydration",
+      "symptoms": [
+        "extreme thirst",
+        "dry mouth",
+        "dark yellow urine",
+        "dizziness",
+        "fatigue",
+        "dry skin"
+      ],
+      "description": "A harmful reduction in the amount of water in the body, requiring immediate replenishment of fluids and electrolytes.",
+      "severity": "moderate"
+    },
+    {
+      "disease_name": "Seasonal Allergies",
+      "symptoms": [
+        "sneezing",
+        "runny nose",
+        "itchy eyes",
+        "watery eyes",
+        "congestion",
+        "throat irritation"
+      ],
+      "description": "An allergic reaction to airborne substances like pollen from trees, grass, or weeds, occurring seasonally.",
+      "severity": "mild"
+    }
+  ]
+}

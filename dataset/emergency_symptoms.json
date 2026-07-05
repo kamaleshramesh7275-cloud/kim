@@ -1,0 +1,112 @@
+{
+  "recommendations": {
+    "Fever": {
+      "warning_signs": [
+        "Difficulty breathing or chest pain",
+        "Persistent fever above 103°F (39.4°C) that does not respond to medication",
+        "Stiff neck and severe headache",
+        "Confusion, lethargy, or difficulty waking up",
+        "Seizures or convulsions"
+      ],
+      "emergency_contact": "911 or call nearest emergency response team immediately"
+    },
+    "Cold": {
+      "warning_signs": [
+        "Shortness of breath or difficulty breathing",
+        "High fever or chest tightness",
+        "Inability to keep liquids down",
+        "Symptoms worsening significantly after 7-10 days"
+      ],
+      "emergency_contact": "Consult your primary care physician or visit urgent care"
+    },
+    "Flu": {
+      "warning_signs": [
+        "Difficulty breathing or shortness of breath",
+        "Persistent pain or pressure in the chest or abdomen",
+        "Sudden dizziness, confusion, or inability to arouse",
+        "Severe muscle pain or weakness",
+        "Fever and cough that improve but then return and worsen"
+      ],
+      "emergency_contact": "Go to the nearest emergency department or call 911"
+    },
+    "Cough": {
+      "warning_signs": [
+        "Coughing up blood or pink-tinged mucus",
+        "Difficulty breathing, swallowing, or talking",
+        "Wheezing or a high-pitched sound when inhaling (stridor)",
+        "Severe chest pain when coughing",
+        "Cough lasting more than 3-4 weeks"
+      ],
+      "emergency_contact": "Schedule an urgent doctor visit or go to emergency room if breathing is compromised"
+    },
+    "Sore Throat": {
+      "warning_signs": [
+        "Difficulty breathing or swallowing",
+        "Inability to open your mouth fully (trismus)",
+        "Drooling or muffled 'hot potato' voice",
+        "A new rash or stiff neck",
+        "Blood in saliva or phlegm"
+      ],
+      "emergency_contact": "Seek immediate emergency medical attention"
+    },
+    "Headache": {
+      "warning_signs": [
+        "Sudden, extremely severe pain ('thunderclap' headache)",
+        "Headache accompanied by fever, stiff neck, confusion, or seizures",
+        "Headache with double vision, numbness, weakness, or speech difficulty",
+        "Headache following a recent head injury",
+        "A new type of headache if you are over 50 years old"
+      ],
+      "emergency_contact": "Call 911 or visit the emergency room immediately"
+    },
+    "Diarrhea": {
+      "warning_signs": [
+        "Signs of severe dehydration (no urination, sunken eyes, dry mouth, confusion)",
+        "Stools that are black, tarry, or contain visible blood",
+        "Severe, constant abdominal pain",
+        "High fever (above 102°F)",
+        "Diarrhea lasting more than 2 days in adults"
+      ],
+      "emergency_contact": "Contact your healthcare provider or seek urgent care"
+    },
+    "Constipation": {
+      "warning_signs": [
+        "Severe, constant abdominal pain",
+        "Blood in the stool or bleeding from the rectum",
+        "Inability to pass gas (indicates possible bowel obstruction)",
+        "Unexplained weight loss",
+        "Constipation accompanied by vomiting and fever"
+      ],
+      "emergency_contact": "Contact a doctor immediately or visit urgent care"
+    },
+    "Food Poisoning": {
+      "warning_signs": [
+        "Frequent episodes of vomiting and inability to keep any liquids down for 12+ hours",
+        "Bloody vomit or stools",
+        "Extreme abdominal cramps or pain",
+        "High fever (oral temperature above 102°F)",
+        "Neurological symptoms such as blurry vision, muscle weakness, or tingling"
+      ],
+      "emergency_contact": "Visit the nearest emergency clinic or contact your physician"
+    },
+    "Dehydration": {
+      "warning_signs": [
+        "Extreme lethargy, confusion, irritability, or delirium",
+        "Inability to urinate for 8 hours, or very dark amber urine",
+        "Fainting, dizziness upon standing, or low blood pressure",
+        "Rapid heart rate and shallow rapid breathing",
+        "Sunken eyes and lack of tears when crying"
+      ],
+      "emergency_contact": "Go to the emergency room immediately for intravenous fluid replacement"
+    },
+    "Seasonal Allergies": {
+      "warning_signs": [
+        "Sudden difficulty breathing or throat swelling (anaphylaxis)",
+        "Wheezing, chest tightness, or persistent cough",
+        "Hives, swelling of the lips, tongue, or face",
+        "Dizziness or fainting"
+      ],
+      "emergency_contact": "Administer epinephrine auto-injector if available and call 911 immediately"
+    }
+  }
+}
