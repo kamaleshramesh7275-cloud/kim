@@ -1,0 +1,59 @@
+{
+  "recommendations": {
+    "Fever": {
+      "sleep_recommendation": "Aim for 9-10 hours of sleep. Take daytime naps as needed. Sleep helps the immune system fight infections.",
+      "hygiene_recommendation": "Wash hands frequently. Sponge bathe with lukewarm water; do not use cold water. Change sweat-soaked bedding and clothes daily.",
+      "stress_management": "Avoid work, screen time, and mental exhaustion. Keep the environment quiet and dark to avoid triggering headaches."
+    },
+    "Cold": {
+      "sleep_recommendation": "Get 8 hours of sleep. Elevate your head slightly with extra pillows to prevent nasal congestion from blocking your sleep.",
+      "hygiene_recommendation": "Use tissues when coughing/sneezing and discard immediately. Wash hands with soap for 20 seconds. Disinfect frequently touched items.",
+      "stress_management": "Practice gentle breathing and keep warm. Light reading or relaxing music can help pass time without raising stress."
+    },
+    "Flu": {
+      "sleep_recommendation": "Strict bed rest. Get at least 9-10 hours of sleep. Avoid physical tasks around the house.",
+      "hygiene_recommendation": "Isolate in a separate room if possible. Wash hands, wear a mask if interacting with family, and use separate utensils.",
+      "stress_management": "Disconnect entirely from work. Focus on resting. Mental stress can prolong recovery time."
+    },
+    "Cough": {
+      "sleep_recommendation": "8 hours of sleep. Use a humidifier in your bedroom to keep airways moist. Elevating your head prevents nighttime coughing fits.",
+      "hygiene_recommendation": "Cover mouth when coughing (use elbow, not hand). Wash hands frequently.",
+      "stress_management": "Avoid inhaling dry air, smoke, or strong chemical sprays. Stay in calm, humidified rooms."
+    },
+    "Sore Throat": {
+      "sleep_recommendation": "8 hours of sleep. Rest your vocal cords as much as possible; avoid talking.",
+      "hygiene_recommendation": "Wash glasses and cups thoroughly. Replace your toothbrush once you recover to prevent reinfection.",
+      "stress_management": "Sip warm liquids to soothe stress. Take warm steamy baths to relax throat muscles."
+    },
+    "Headache": {
+      "sleep_recommendation": "Aim for a consistent 7-8 hours. Avoid oversleeping or sleeping too little, as both can trigger headaches.",
+      "hygiene_recommendation": "Keep lighting dim and noise levels low. Take a warm shower to relax neck and shoulder muscles.",
+      "stress_management": "Avoid screens and bright lights. Do progressive muscle relaxation, meditation, or spend time in a quiet dark room."
+    },
+    "Diarrhea": {
+      "sleep_recommendation": "Ensure 8 hours of rest. Dehydration and gut repair require significant metabolic energy.",
+      "hygiene_recommendation": "Wash hands thoroughly with soap after every restroom visit. Disinfect restroom surfaces daily to prevent viral spread.",
+      "stress_management": "Stress can accelerate bowel motility. Rest quietly, use warm compresses on the stomach to soothe cramps."
+    },
+    "Constipation": {
+      "sleep_recommendation": "7-8 hours of sleep. A regular sleep schedule helps maintain a regular circadian rhythm, which coordinates bowel movements.",
+      "hygiene_recommendation": "Respond immediately to urges to defecate. Take your time, avoiding heavy straining. Gentle walking post-meals is helpful.",
+      "stress_management": "High stress releases hormones that slow digestion. Practice relaxation, deep breathing, and belly-massages."
+    },
+    "Food Poisoning": {
+      "sleep_recommendation": "Rest in bed as much as possible. Sleep supports cellular repair and helps your body flush out toxins.",
+      "hygiene_recommendation": "Wash hands with soap and water after vomiting or using the restroom. Disinfect bedding and clothing if soiled.",
+      "stress_management": "Allow yourself to sleep. Keep stress low by keeping work on hold until hydration levels are normal."
+    },
+    "Dehydration": {
+      "sleep_recommendation": "Rest completely. Lie down in a cool, ventilated room. Sleep helps stabilize blood pressure and heart rate.",
+      "hygiene_recommendation": "Avoid exposing skin to direct hot sunlight. Stay in cool shade. Sponge body with cool water if feeling hot.",
+      "stress_management": "Dehydration increases cortisol (stress hormone). Rest quietly and focus on slow hydration to keep heart rate stable."
+    },
+    "Seasonal Allergies": {
+      "sleep_recommendation": "8 hours of sleep. Keep windows closed during sleep. Use an air purifier in the bedroom.",
+      "hygiene_recommendation": "Shower and wash hair immediately upon returning home. Disinfect outdoor jackets. Wash bedding weekly in hot water.",
+      "stress_management": "High stress worsens immune responses. Practice meditation, deep breathing, and reduce strenuous outdoor duties."
+    }
+  }
+}

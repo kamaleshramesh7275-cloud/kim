@@ -1,0 +1,59 @@
+{
+  "recommendations": {
+    "Fever": {
+      "hydration_advice": "Drink at least 2.5 to 3 liters of fluids daily. Water, diluted juices, warm broths, and decaffeinated herbal teas are best. Avoid dehydration.",
+      "caloric_recommendation": "Caloric needs increase during a fever (approx. 7% per 1°F rise). Focus on energy-dense, easy-to-digest carbs like porridge, bananas, and crackers.",
+      "electrolytes": "Incorporate coconut water, broths, and oral rehydration solutions to balance lost salts from sweating."
+    },
+    "Cold": {
+      "hydration_advice": "Hydrate frequently to thin out mucus. Warm drinks like lemon water, herbal teas, and hot broths soothe the throat.",
+      "caloric_recommendation": "Maintain normal caloric intake. Focus on foods rich in Vitamin C, zinc, and antioxidants (citrus, berries, garlic).",
+      "electrolytes": "Warm vegetable or chicken soups provide sodium, potassium, and chloride to sustain cell hydration."
+    },
+    "Flu": {
+      "hydration_advice": "Prioritize fluid intake above solids. Sip warm water, broths, and herbal teas. Aim for 2.5+ liters.",
+      "caloric_recommendation": "Do not force yourself to eat if appetite is low. When eating, select small amounts of bland, protein-rich foods like scrambled eggs.",
+      "electrolytes": "ORS or electrolyte packets in water are highly recommended to offset mineral depletion from sweating and fever."
+    },
+    "Cough": {
+      "hydration_advice": "Warm fluids are essential. Honey in warm water or tea creates a protective layer over the throat receptors, suppressing cough.",
+      "caloric_recommendation": "Eat soft, nutrient-dense foods (smooth soups, oatmeal) that do not scratch or irritate the throat lining.",
+      "electrolytes": "Broths and coconut water are excellent for fluid balancing."
+    },
+    "Sore Throat": {
+      "hydration_advice": "Drink lukewarm or cool liquids, whichever feels better. Avoid highly acidic drinks (like orange juice) which sting the raw throat.",
+      "caloric_recommendation": "Opt for soft, high-calorie, high-protein foods like yogurt, custard, scrambled eggs, and smoothies to maintain strength.",
+      "electrolytes": "Diluted apple juice or warm broth provides hydration and electrolytes without stinging."
+    },
+    "Headache": {
+      "hydration_advice": "Dehydration is a leading trigger of headaches. Drink 500ml of water immediately when a headache starts, then sip steadily.",
+      "caloric_recommendation": "Eat magnesium-rich foods (nuts, seeds, leafy greens) to help relax blood vessels. Avoid skipping meals, as low blood sugar triggers headaches.",
+      "electrolytes": "An electrolyte-infused drink can quickly restore fluid balance and ease tension-related headache symptoms."
+    },
+    "Diarrhea": {
+      "hydration_advice": "Crucial: Plain water alone is not enough. Drink ORS, diluted fruit juices, and clear broths. Sip continuously.",
+      "caloric_recommendation": "Follow the BRAT diet. Avoid fiber, sugar, and fat. Eat small portions of rice, bananas, and toast to absorb water in the gut.",
+      "electrolytes": "Oral Rehydration Salts (ORS) contain the precise ratio of sodium, potassium, and glucose to maximize gut fluid absorption."
+    },
+    "Constipation": {
+      "hydration_advice": "Drink at least 3 liters of water daily. Water softens the stool, making it easier to pass. Warm water in the morning stimulates bowel motility.",
+      "caloric_recommendation": "Increase daily fiber intake to 25-30g. Eat prunes, whole grains, and raw vegetables. Increase fiber gradually to prevent gas.",
+      "electrolytes": "Ensure adequate magnesium intake (found in nuts, seeds, leafy greens) as it acts as a mild osmotic laxative."
+    },
+    "Food Poisoning": {
+      "hydration_advice": "Do not drink large quantities of water at once as it triggers vomiting. Sip ORS or electrolyte drinks (1-2 tablespoons every 10-15 minutes).",
+      "caloric_recommendation": "Avoid solid foods entirely until vomiting stops. Once ready, start with very small amounts of bland, low-fat starches (crackers, rice).",
+      "electrolytes": "ORS is mandatory to replace critical sodium, potassium, and chloride lost from vomiting and diarrhea."
+    },
+    "Dehydration": {
+      "hydration_advice": "Rehydrate immediately. Sip ORS, coconut water, or water with electrolyte tablets. Drink slowly.",
+      "caloric_recommendation": "Focus on high-water-content fruits (watermelon, strawberries, oranges) rather than dry solid foods.",
+      "electrolytes": "Electrolytes are essential. Gulping plain water in massive quantities can dilute blood sodium levels (hyponatremia), which is dangerous."
+    },
+    "Seasonal Allergies": {
+      "hydration_advice": "Drink plenty of water to help thin out thick mucus and flush out allergens.",
+      "caloric_recommendation": "Incorporate anti-inflammatory foods (fatty fish, walnuts, turmeric) to reduce allergy symptoms. Maintain a balanced calorie level.",
+      "electrolytes": "Standard dietary intake of minerals via fruits and vegetables is sufficient."
+    }
+  }
+}

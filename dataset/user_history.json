@@ -1,0 +1,84 @@
+{
+  "user_id": "default",
+  "history": [
+    {
+      "date": "2026-07-05",
+      "symptoms": [
+        "fever",
+        "headache"
+      ],
+      "recommendations": {
+        "food": [
+          "Rice porridge (Kanji)",
+          "Clear chicken or vegetable broth"
+        ],
+        "exercise": [
+          "None - prioritised rest",
+          "Very light passive stretching in bed once fever breaks"
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "symptoms": [
+        "fever"
+      ],
+      "recommendations": {
+        "food": [
+          "Plain saltine crackers",
+          "Dry white toast",
+          "White rice",
+          "Applesauce",
+          "Bananas",
+          "Plain boiled chicken (when stomach settles)"
+        ],
+        "exercise": [
+          "Complete bed rest",
+          "Very gentle stretching after symptoms break"
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "symptoms": [
+        "fever"
+      ],
+      "recommendations": {
+        "food": [
+          "Plain saltine crackers",
+          "Dry white toast",
+          "White rice",
+          "Applesauce",
+          "Bananas",
+          "Plain boiled chicken (when stomach settles)"
+        ],
+        "exercise": [
+          "Complete bed rest",
+          "Very gentle stretching after symptoms break"
+        ]
+      }
+    },
+    {
+      "date": "2026-07-05",
+      "symptoms": [
+        "sore throat",
+        "scratchy throat"
+      ],
+      "recommendations": {
+        "food": [
+          "Warm vegetable broth",
+          "Mashed potatoes",
+          "Yogurt",
+          "Scrambled eggs",
+          "Smoothies (non-acidic)",
+          "Oatmeal with honey"
+        ],
+        "exercise": [
+          "Walking at moderate pace",
+          "Light flexibility stretching",
+          "Gentle yoga"
+        ]
+      }
+    }
+  ]
+}

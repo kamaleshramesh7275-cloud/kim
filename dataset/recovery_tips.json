@@ -1,0 +1,103 @@
+{
+  "recommendations": {
+    "Fever": {
+      "tips": [
+        "Place a cool, damp washcloth on your forehead or the back of your neck",
+        "Keep room temperature comfortable (around 70°F or 21°C)",
+        "Wear lightweight clothing and use a light blanket",
+        "Avoid cold baths or ice, as they cause shivering which raises core temperature",
+        "Sleep as much as possible to let the immune system work"
+      ]
+    },
+    "Cold": {
+      "tips": [
+        "Perform steam inhalation twice a day using warm water",
+        "Gargle with warm salt water (1/2 tsp salt in 1 cup warm water) to relieve sore throat",
+        "Use nasal saline drops or a neti pot to clear nasal blockages",
+        "Apply a warm compress over sinuses to relieve facial pressure",
+        "Use a humidifier in your bedroom at night"
+      ]
+    },
+    "Flu": {
+      "tips": [
+        "Stay home and isolate from family members to prevent spread",
+        "Prioritize strict bed rest; limit physical chores",
+        "Take a warm, steamy shower to clear congestion and soothe body aches",
+        "Use extra pillows to elevate your head for easier breathing",
+        "Monitor temperature and oxygen levels regularly"
+      ]
+    },
+    "Cough": {
+      "tips": [
+        "Take a teaspoon of honey before bed to coat the throat (do not give to infants under 1 year)",
+        "Sip warm liquids continuously to soothe the raw throat lining",
+        "Inhale steam or use a cool-mist vaporizer",
+        "Avoid exposure to tobacco smoke, dust, and chemical fumes",
+        "Elevate head with pillows at night to reduce post-nasal drip coughing"
+      ]
+    },
+    "Sore Throat": {
+      "tips": [
+        "Gargle warm salt water every 2-3 hours",
+        "Rest your voice - avoid shouting or prolonged talking",
+        "Suckle on throat lozenges or hard candies to stimulate saliva flow",
+        "Wrap a warm scarf or compress around your neck",
+        "Avoid dry indoor air by using a humidifier"
+      ]
+    },
+    "Headache": {
+      "tips": [
+        "Rest in a dark, quiet room with your eyes closed",
+        "Apply a cold compress or ice pack wrapped in a cloth to your forehead or temples",
+        "Gently massage your neck, shoulders, and temples",
+        "Practice deep breathing or progressive muscle relaxation",
+        "Reduce screen time from phones, computers, and TV immediately"
+      ]
+    },
+    "Diarrhea": {
+      "tips": [
+        "Eat small, frequent, bland meals instead of three large meals",
+        "Rest physically to prevent abdominal cramping",
+        "Maintain strict hand hygiene to avoid spreading viral infections",
+        "Avoid tight clothing around the abdomen",
+        "Do not take anti-diarrheal medication without doctor consultation if fever or blood is present"
+      ]
+    },
+    "Constipation": {
+      "tips": [
+        "Try to establish a regular time for bowel movements, such as after breakfast",
+        "Never ignore or delay the urge to pass stool",
+        "Drink a glass of warm water first thing in the morning",
+        "Gently massage the lower abdomen in a clockwise direction to stimulate movement",
+        "Review if any recent medications or supplements (like iron) are causing it"
+      ]
+    },
+    "Food Poisoning": {
+      "tips": [
+        "Let your stomach settle; avoid solid foods for the first few hours of active vomiting",
+        "Sip very small amounts of fluids frequently, even if you can only manage a tablespoon at a time",
+        "Lie down on your side so you do not choke if vomiting occurs suddenly",
+        "Avoid taking anti-diarrheal medicines as they may keep toxins in your body",
+        "Gradually introduce bland foods once vomiting has ceased for 6+ hours"
+      ]
+    },
+    "Dehydration": {
+      "tips": [
+        "Sip water or ORS slowly in small volumes (gulping large amounts can trigger vomiting)",
+        "Move to a cool, air-conditioned, or well-ventilated space",
+        "Remove excess clothing to assist cooling down",
+        "Lie down with feet slightly elevated to promote blood flow to the brain",
+        "Keep tracking urine color - it should clear to a light yellow color"
+      ]
+    },
+    "Seasonal Allergies": {
+      "tips": [
+        "Keep all windows closed during high pollen days; use air conditioning instead",
+        "Take a shower and wash your hair after spending time outdoors to remove pollen",
+        "Dry your clothes indoors rather than on an outdoor line where pollen sticks",
+        "Wear sunglasses outdoors to protect your eyes from airborne pollen",
+        "Use a nasal saline rinse daily to wash out allergen particles"
+      ]
+    }
+  }
+}
