@@ -301,6 +301,18 @@ async function runPythonRag(message: string, apiKey: string) {
   const pythonExecutable = getPythonExecutable();
   const scriptPath = path.join(process.cwd(), "utils", "groq_rag.py");
 
+  // Extract the last line of stdout that looks like JSON — this skips any
+  // non-JSON noise (tqdm bars, warnings) that a library might emit to stdout.
+  const extractJson = (raw: string) => {
+    const lines = raw.split("\n").map((l) => l.trim()).filter(Boolean);
+    for (let i = lines.length - 1; i >= 0; i--) {
+      if (lines[i].startsWith("{") || lines[i].startsWith("[")) {
+        return lines[i];
+      }
+    }
+    return raw.trim();
+  };
+
   try {
     const { stdout } = await execFileAsync(
       pythonExecutable,
@@ -310,17 +322,37 @@ async function runPythonRag(message: string, apiKey: string) {
           ...process.env,
           GROQ_API_KEY: apiKey || process.env.GROQ_API_KEY || "",
           GROQ_MODEL: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
+          // Silence HuggingFace / tqdm noise
+          TOKENIZERS_PARALLELISM: "false",
+          TRANSFORMERS_VERBOSITY: "error",
         },
         timeout: 180000,
       }
     );
 
-    const parsed = JSON.parse(stdout.trim());
+    const parsed = JSON.parse(extractJson(stdout));
     return {
       reply: parsed.reply || buildOfflineAnswer(message, []),
       matchedSources: Array.isArray(parsed.matchedSources) ? parsed.matchedSources : [],
     };
   } catch (error: any) {
+    // execFileAsync throws on non-zero exit code, but the process may still
+    // have written valid JSON to stdout before exiting (e.g. due to a tqdm
+    // warning triggering a non-zero exit in some environments).
+    const stdoutFallback: string = error?.stdout ?? "";
+    if (stdoutFallback) {
+      try {
+        const parsed = JSON.parse(extractJson(stdoutFallback));
+        if (parsed?.reply) {
+          return {
+            reply: parsed.reply,
+            matchedSources: Array.isArray(parsed.matchedSources) ? parsed.matchedSources : [],
+          };
+        }
+      } catch {
+        // stdout was not valid JSON — fall through to offline answer
+      }
+    }
     return {
       reply: buildOfflineAnswer(message, []),
       matchedSources: [],
