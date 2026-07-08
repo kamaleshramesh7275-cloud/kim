@@ -18,6 +18,7 @@ os.environ.setdefault("SENTENCE_TRANSFORMERS_HOME", str(Path(__file__).resolve()
 import io
 _real_stderr = sys.stderr
 sys.stderr = io.TextIOWrapper(open(os.devnull, "wb"), errors="replace")
+_import_error: Exception | None = None
 
 try:
     import faiss
@@ -25,8 +26,9 @@ try:
     from dotenv import load_dotenv
     from groq import Groq
     from sentence_transformers import SentenceTransformer
+except Exception as _e:
+    _import_error = _e
 finally:
-    # Restore stderr so real errors can still surface in Next.js server logs
     sys.stderr = _real_stderr
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -251,6 +253,15 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    # If a library failed to import, report it as JSON and exit cleanly.
+    if _import_error is not None:
+        sys.stdout.write(json.dumps({
+            "reply": f"The recovery AI could not start because a required library is missing: {_import_error}. Please run: pip install -r requirements.txt",
+            "matchedSources": [],
+        }) + "\n")
+        sys.stdout.flush()
+        sys.exit(0)
+
     try:
         main()
     except Exception as exc:

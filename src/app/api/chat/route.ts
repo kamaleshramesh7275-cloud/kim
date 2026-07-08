@@ -363,13 +363,16 @@ async function runPythonRag(message: string, apiKey: string) {
 
 export async function POST(req: Request) {
   try {
-    const { message, apiKey: clientApiKey } = await req.json();
+    const { message } = await req.json();
 
-    const apiKey = clientApiKey || process.env.GROQ_API_KEY || process.env.GEMINI_API_KEY;
+    // Always use the server-side Groq key from .env.local.
+    // The client may send a Gemini key (from UI settings) which must NOT be
+    // passed to the Groq SDK — doing so causes an auth error and empty stdout.
+    const groqApiKey = process.env.GROQ_API_KEY || "";
     const backendRecords = await loadBackendDatasets();
     const context = await retrieveRelevantContext(message, backendRecords);
 
-    const ragResponse = await runPythonRag(message, apiKey || "");
+    const ragResponse = await runPythonRag(message, groqApiKey);
 
     return NextResponse.json({
       reply: ragResponse.reply,
