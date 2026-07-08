@@ -5,11 +5,29 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List
 
-import faiss
-import numpy as np
-from dotenv import load_dotenv
-from groq import Groq
-from sentence_transformers import SentenceTransformer
+# ── Silence ALL library noise before imports so stdout stays clean JSON ──────
+# sentence_transformers, tqdm, and faiss all write progress/warnings to stderr
+# (or occasionally stdout).  Node.js reads the full stdout of this process and
+# calls JSON.parse() on it, so any extra text causes "Unexpected end of JSON".
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+os.environ.setdefault("TRANSFORMERS_VERBOSITY", "error")
+os.environ.setdefault("SENTENCE_TRANSFORMERS_HOME", str(Path(__file__).resolve().parents[1] / ".cache" / "st"))
+
+# Redirect stderr to /dev/null during the heavy imports so tqdm progress bars
+# and HuggingFace download messages never leak into stdout.
+import io
+_real_stderr = sys.stderr
+sys.stderr = io.TextIOWrapper(open(os.devnull, "wb"), errors="replace")
+
+try:
+    import faiss
+    import numpy as np
+    from dotenv import load_dotenv
+    from groq import Groq
+    from sentence_transformers import SentenceTransformer
+finally:
+    # Restore stderr so real errors can still surface in Next.js server logs
+    sys.stderr = _real_stderr
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE_DIR / "public" / "data"
@@ -215,18 +233,33 @@ def main() -> None:
 
     context_docs = retrieve_context(query, top_k=4)
     reply = generate_reply(query, context_docs, api_key, model_name)
-    print(
-        json.dumps(
+
+    # Always emit exactly one line of clean JSON to stdout — nothing else.
+    result = {
+        "reply": reply,
+        "matchedSources": [
             {
-                "reply": reply,
-                "matchedSources": [
-                    {"source": doc.get("source", "unknown"), "text": doc.get("text", ""), "score": doc.get("score", 0.0)}
-                    for doc in context_docs
-                ],
+                "source": doc.get("source", "unknown"),
+                "text": doc.get("text", ""),
+                "score": doc.get("score", 0.0),
             }
-        )
-    )
+            for doc in context_docs
+        ],
+    }
+    sys.stdout.write(json.dumps(result) + "\n")
+    sys.stdout.flush()
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:
+        # Last-resort: emit valid JSON even on a fatal crash so Node.js never
+        # sees an empty or garbled response.
+        fallback = {
+            "reply": f"The recovery AI encountered an error: {exc}. Please try again.",
+            "matchedSources": [],
+        }
+        sys.stdout.write(json.dumps(fallback) + "\n")
+        sys.stdout.flush()
+        sys.stderr.write(f"[groq_rag] fatal: {exc}\n")
