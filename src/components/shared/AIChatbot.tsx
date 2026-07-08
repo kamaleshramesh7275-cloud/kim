@@ -447,7 +447,8 @@ ${actionItems.join("\n")}
 
     try {
       const controller = new AbortController();
-      const timeoutId = window.setTimeout(() => controller.abort(), 15000);
+      // Give the Python RAG process enough time to start up and respond
+      const timeoutId = window.setTimeout(() => controller.abort(), 90000);
 
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -479,18 +480,22 @@ ${actionItems.join("\n")}
         },
       ]);
     } catch (err: any) {
-      const messageText = err?.name === "AbortError"
-        ? "The chat request timed out. A safe recovery answer was not returned in time."
-        : `**Error while fetching from the backend knowledge base**: ${err.message}.`;
+      // On timeout or network error, gracefully fall back to the local offline RAG
+      // rather than showing a dead-end error message.
+      const offlineReply = generateOfflineResponse(queryText, searchMatches);
+      const isTimeout = err?.name === "AbortError";
+      const fallbackNote = isTimeout
+        ? "*(Backend response timed out — showing local dataset answer instead)*"
+        : `*(Backend unavailable: ${err.message} — showing local dataset answer instead)*`;
 
       setMessages(prev => [
         ...prev,
         {
           id: (Date.now() + 1).toString(),
-          role: "system",
-          content: messageText,
+          role: "assistant",
+          content: `${fallbackNote}\n\n${offlineReply}`,
           timestamp: new Date(),
-          matchedSources: [],
+          matchedSources: searchMatches.map(m => ({ dataset: m.dataset, text: m.text })),
         },
       ]);
     } finally {
@@ -829,9 +834,14 @@ ${actionItems.join("\n")}
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-purple-400 animate-spin">
                   <RefreshCw className="w-3.5 h-3.5" />
                 </div>
-                <div className="bg-[#090d1f]/40 border border-white/5 text-slate-400 rounded-2xl p-4 text-xs font-semibold backdrop-blur-md flex items-center gap-2.5">
-                  <Loader2 className="w-3.5 h-3.5 animate-spin text-purple-400" />
-                  <span>AI Coach is scanning datasets and synthesizing answer...</span>
+                <div className="bg-[#090d1f]/40 border border-white/5 text-slate-400 rounded-2xl p-4 text-xs font-semibold backdrop-blur-md flex flex-col gap-1.5">
+                  <div className="flex items-center gap-2.5">
+                    <Loader2 className="w-3.5 h-3.5 animate-spin text-purple-400 flex-shrink-0" />
+                    <span>AI Coach is scanning datasets and synthesizing answer...</span>
+                  </div>
+                  <span className="text-[10px] text-slate-600 pl-6">
+                    First request may take up to 90 seconds while the model loads.
+                  </span>
                 </div>
               </motion.div>
             )}
