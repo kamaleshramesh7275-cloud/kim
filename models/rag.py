@@ -145,7 +145,12 @@ class MedicalRAGEngine:
 
         # 5. Check if we have an API Key. If so, execute LLM-based Synthesis (Online RAG)
         if api_key:
-            reply = self._generate_llm_response(query, filtered_context_data, personalized_warnings, api_key)
+            try:
+                reply = self._generate_llm_response(query, filtered_context_data, personalized_warnings, api_key)
+            except Exception as e:
+                # Fallback to local rule-based structured generator on LLM failure
+                reply = self._generate_local_response(query, filtered_context_data, personalized_warnings)
+                personalized_warnings.append(f"System: LLM synthesis failed ({e}). Using local rule-based advisor.")
         else:
             # Fallback to local rule-based structured generator
             reply = self._generate_local_response(query, filtered_context_data, personalized_warnings)
@@ -183,7 +188,7 @@ class MedicalRAGEngine:
         if api_key:
             try:
                 genai.configure(api_key=api_key)
-                model = genai.GenerativeModel("gemini-1.5-flash")
+                model = genai.GenerativeModel("gemini-2.5-flash")
                 prompt = (
                     f"You are a medical intelligence assistant. The user asked: '{query}'. "
                     "We did not detect specific symptoms or match diseases in our database. "
@@ -316,7 +321,7 @@ class MedicalRAGEngine:
     def _generate_llm_response(self, query: str, context_data: List[Dict[str, Any]], personalized_warnings: List[str], api_key: str) -> str:
         """Use Gemini API to synthesize the response with context data (Online RAG)."""
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.5-flash")
         
         # Build context string
         context_str = ""
